@@ -2,6 +2,7 @@
 
 # Virtual Environment Installation guide
 
+## Windows
 
 Creating an environment: **python -m venv name_of_environment**
 
