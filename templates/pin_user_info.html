@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin User Information</title>
+
+    <style>
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        body {
+            padding: 5%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Valid 4 Digit Pin Number to get User Information</h1>
+    
+    <form action="{{url_for('pin_authentication')}}" method="POST">
+        <input type="number" name="pin" id="pin" placeholder="Enter 4 - digit pin">
+        <input type="submit" value="View Information">
+    </form>
+
+    {% if request.method == "POST" %}
+
+    {% if error != "user not found" %}
+    <h1>User Information</h1>
+    <p>Name: {{user[0]}}</p>
+    <p>Year Of Birth: {{user[1]}}</p>
+    {% else %}
+    <h1>User Not Found</h1>
+    {% endif %}
+
+    {% endif %}
+
+</body>
+</html>
