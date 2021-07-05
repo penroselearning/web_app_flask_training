@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -38,6 +38,41 @@ def about_us():
 def subscriber():
 
     return render_template("subscriber.html")
+
+@app.route("/square", methods=["POST","GET"])
+def square():
+    if request.method == "GET":
+        return render_template("squares.html")
+    
+    elif request.method == "POST":
+        number = int(request.form['number'])
+
+        square = number ** 2
+        return render_template("squares.html", square=square)
+
+
+@app.route("/pin_authentication", methods=["GET","POST"])
+def pin_authentication():
+
+    users = {
+        1234 : ["John Doe", 2001],
+        1002 : ["Eric Jerald", 2005],
+        1011 : ["Rick Grimes", 2001],
+        1221 : ["Carl Grimes", 2008]
+    }
+
+    if request.method == "GET":
+        return render_template("pin_user_info.html")
+
+    elif request.method == "POST":
+        pin = int(request.form['pin'])
+
+        if pin in users.keys():
+            user = users[pin]
+
+            return render_template("pin_user_info.html", user=user)
+        else:
+            return render_template("pin_user_info.html", error="user not found")
 
 if __name__ == '__main__':
     app.run(debug=True)
