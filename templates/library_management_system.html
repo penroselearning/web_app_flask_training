@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <style>
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        body {
+            padding: 5%;
+        }
+
+        p span {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Current Books</h1>
+
+    {% for book in library.values() %}
+    <p>{{book[0]}} <span>- {{book[1]}}</span></p>
+    
+    {% endfor %}
+
+    <form action="{{url_for('lib_management')}}" method="POST">
+        <input type="text" name="name_of_book" id="name_of_book" placeholder="Enter the name of the book">
+        <input type="text" name="name_of_author" id="name_of_author" placeholder="Enter the name of the author">
+        <input type="submit" value="Enter New Book">
+    </form>
+</body>
+</html>

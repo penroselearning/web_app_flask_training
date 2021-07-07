@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <style>
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        body {
+            padding: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    <ul>
+        {% for item in shopping_list %}
+        <li>{{item}}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{url_for('shopping_cart')}}" method="POST">
+        <input type="text" name="item" placeholder="Enter Your Item"><br/>
+
+        <input type="radio" name="add_remove" id="add" value="add">
+        <label for="add">Add</label>
+        <input type="radio" name="add_remove" id="remove" value="remove">
+        <label for="remove">Remove</label><br/>
+
+        <input type="submit" value="Perform Action">
+    </form>
+</body>
+
+</html>
